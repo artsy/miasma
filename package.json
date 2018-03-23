@@ -1,5 +1,13 @@
 {
+  "name": "miasma",
+  "version": "0.1.0",
+  "description": "An Artsy e2e testing experiment with Cypress",
   "devDependencies": {
     "cypress": "^2.1.0"
-  }
+  },
+  "scripts": {
+    "cypress:open": "cypress open"
+  },
+  "author": "roop@artsymail.com",
+  "license": "UNLICENSED"
 }
