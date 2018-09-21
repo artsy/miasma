@@ -7,7 +7,7 @@ A quick proof of concept using Cypress to run high-fidelity e2e tests against th
 ## Usage
 
 ```bash
-git clone git@github.com:anandaroop/miasma.git
+git clone git@github.com:artsy/miasma.git
 cd miasma
 yarn
 
