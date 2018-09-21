@@ -1,0 +1,43 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: cypress/base:8
+        environment:
+          TERM: xterm
+    working_directory: ~/app
+    parallelism: 1
+    steps:
+      - checkout
+
+      - restore_cache:
+          name: Restore yarn cache
+          key: yarn-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Yarn install
+          command: yarn install
+
+      - save_cache:
+          name: Save yarn cache
+          key: yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules/
+
+      - run:
+          name: Running E2E tests with JUnit reporter
+          command: yarn cypress run test-junit
+
+      - store_test_results:
+          path: junit-results
+
+workflows:
+  version: 2
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 * * * *"
+    jobs:
+      - test
+
